@@ -15,5 +15,4 @@ CRONTAB
 ##### Example:
 ```bash
 * * * * * /tmp/service.sh wallpaper #will trigger SERVICE/STEPPER/wallpaper.sh 
-``
-
+```
