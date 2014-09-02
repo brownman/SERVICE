@@ -1,0 +1,32 @@
+sudo ifconfig $device down #device down
+sudo iwconfig $device essid $ssid
+sudo iwconfig $device ap $ap
+sudo iwconfig $device mode $mode
+sudo iwconfig $device 
+sudo ifconfig $device up #device up 
+
+sudo iwlist $device scan
+
+
+
+
+
+echo sudo iwconfig $device enc $enc
+sudo iwconfig $device essid $ssid enc $psk
+sudo iwconfig $device essid $ssid key $psk
+
+#option2
+sudo ifconfig $device down
+wpa_passphrase $ssid $key
+sudo ifconfig $device up
+
+
+
+update_clipboard 'ping0 && ping1'
+#sudo iwconfig $device key 00304f85
+#sudo ifconfig -a
+#sudo ifconfig $device up || {  sudo rfkill unblock all; }
+#ifconfig $device > LOGS/ifconfig_${date_ws}.txt
+
+
+

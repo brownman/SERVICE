@@ -1,0 +1,16 @@
+1 0 ;) : ip1S
+1 0 ;) : ip_ifconfig_set_name 
+First we need to bring up the network interface. We identify the name of the card with the command:
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp6s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000
+    link/ether 88:ae:1d:df:f0:ec brd ff:ff:ff:ff:ff:ff
+3: wlp5s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether c0:cb:38:10:b6:60 brd ff:ff:ff:ff:ff:ff
+dhcpcd[18632]: sending commands to master dhcpcd process
+1 0 ;) : ping1
+[*] [commander] ping_limit 8.8.8.8 
+[*]  
+[*] [commander] ping_limit 'google.com' 
+[*]  
+

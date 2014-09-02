@@ -1,0 +1,28 @@
+
+1 255 ;( : sudo wpa_supplicant   wpa_supplicant -D$driver -i$device -c/tmp/wpa0
+Successfully initialized wpa_supplicant
+ioctl[SIOCSIWENCODEEXT]: Invalid argument
+ioctl[SIOCSIWENCODEEXT]: Invalid argument
+wlp5s0: Trying to associate with 00:30:4f:8d:4c:64 (SSID='NAAN-4C64' freq=2412 MHz)
+ioctl[SIOCSIWFREQ]: Device or resource busy
+wlp5s0: Association request to the driver failed
+wlp5s0: Associated with 00:30:4f:8d:4c:64
+wlp5s0: WPA: Key negotiation completed with 00:30:4f:8d:4c:64 [PTK=CCMP GTK=TKIP]
+wlp5s0: CTRL-EVENT-CONNECTED - Connection to 00:30:4f:8d:4c:64 completed [id=0 id_str=]
+
+
+paretech@apollo:~/Downloads/do_for_others_first/OLD/CODE/LIBRARY/BANK/CFG/NETWORK$ sudo iwconfig 
+wlp5s0    IEEE 802.11bgn  ESSID:"NAAN-4C64"  
+          Mode:Managed  Frequency:2.412 GHz  Access Point: 00:30:4F:8D:4C:64   
+          Bit Rate=9 Mb/s   Tx-Power=15 dBm   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:off
+          Link Quality=46/70  Signal level=-64 dBm  
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:0  Invalid misc:33   Missed beacon:0
+
+lo        no wireless extensions.
+
+enp6s0    no wireless extensions.
+

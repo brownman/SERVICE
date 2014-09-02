@@ -1,0 +1,28 @@
+sudo dhcpcd 
+dhcpcd[13875]: version 6.3.2 starting
+dhcpcd[13938]: wlp5s0: starting wpa_supplicant
+dhcpcd[13941]: wlp5s0: failed to start wpa_supplicant
+dhcpcd[13942]: wlp5s0: Successfully initialized wpa_supplicant
+Line 1062: unknown EAP method 'SIM'
+You may need to add support for this EAP method during wpa_supplicant
+build time configuration.
+See README for more information.
+Line 1062: failed to parse eap 'SIM'.
+Line 1065: failed to parse network block.
+Line 1072: unknown EAP method 'PSK'
+You may need to add support for this EAP method during wpa_supplicant
+build time configuration.
+See README for more information.
+Line 1072: failed to parse eap 'PSK'.
+Line 1076: failed to parse network block.
+Line 1108: unknown EAP method 'IKEV2'
+You may need to add support for this EAP method during wpa_supplicant
+build time configuration.
+See README for more information.
+Line 1108: failed to parse eap 'IKEV2'.
+Line 1111: failed to parse network block.
+Failed to read or parse configuration '/etc/wpa_supplicant/wpa_supplicant.conf'.
+dhcpcd[13875]: no interfaces have a carrier
+dhcpcd[13875]: forked to background, child pid 13998
+1 0 ;) : ping1
+

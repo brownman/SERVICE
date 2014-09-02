@@ -1,0 +1,1 @@
+/usr/share/wicd/daemon/wicd-daemon.py

@@ -1,0 +1,10 @@
+wlp5s0    IEEE 802.11bgn  ESSID:"ADW-4401"  
+          Mode:Managed  Frequency:2.462 GHz  Access Point: 00:30:4F:7E:4A:34   
+          Bit Rate=54 Mb/s   Tx-Power=15 dBm   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:off
+          Link Quality=57/70  Signal level=-53 dBm  
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:0  Invalid misc:90   Missed beacon:0
+

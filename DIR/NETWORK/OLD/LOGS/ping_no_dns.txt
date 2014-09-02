@@ -1,0 +1,42 @@
+2 0 ;) : ping1
+[*] [commander] ping_limit 8.8.8.8 
+
+
+[*]  
+[*]  
+[*] [commander] ping_limit 'google.com' 
+[*]  
+[*]  
+2 0 ;) : 
+2 0 ;) : 
+2 0 ;) : 
+2 0 ;) : sudo dhcpcd 
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for paretech: 
+dhcpcd[26074]: control_open: Connection refused
+dhcpcd[26074]: version 6.3.2 starting
+dhcpcd[26074]: DUID 00:01:00:01:1b:17:66:9e:88:ae:1d:df:f0:ec
+dhcpcd[26074]: wlp5s0: IAID 38:10:b6:60
+dhcpcd[26074]: wlp5s0: soliciting an IPv6 router
+dhcpcd[26074]: wlp5s0: rebinding lease of 172.9.9.170
+dhcpcd[26074]: enp6s0: waiting for carrier
+dhcpcd[26074]: wlp5s0: NAK: from 172.9.1.171
+dhcpcd[26074]: wlp5s0: soliciting a DHCP lease
+dhcpcd[26074]: wlp5s0: offered 172.9.9.170 from 172.9.0.1
+dhcpcd[26074]: wlp5s0: leased 172.9.9.170 for 43200 seconds
+dhcpcd[26074]: wlp5s0: adding route to 172.9.0.0/16
+dhcpcd[26074]: wlp5s0: adding default route via 172.9.0.1
+dhcpcd[26074]: forked to background, child pid 26250
+2 0 ;) : ping1
+[*] [commander] ping_limit 8.8.8.8 
+[*]  
+[*]  
+[*] [commander] ping_limit 'google.com' 
+[*]  

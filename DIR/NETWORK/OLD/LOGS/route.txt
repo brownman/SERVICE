@@ -1,0 +1,4 @@
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         172-9-0-1.light 0.0.0.0         UG    302    0        0 wlp5s0
+172.9.0.0       *               255.255.0.0     U     302    0        0 wlp5s0

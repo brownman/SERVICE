@@ -1,0 +1,9 @@
+Description='Automatically generated profile by wifi-menu'
+Interface=wlp5s0
+Connection=wireless
+Security=wpa
+ESSID=NAAN-229F
+IP=dhcp
+Key=00304f85
+DHCPClient='dhcpd'
+DNS=( 192.168.1.1 '8.8.8.8' )

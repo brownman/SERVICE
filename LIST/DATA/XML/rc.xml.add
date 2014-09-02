@@ -1,0 +1,6 @@
+ <keybind key="A-F2">
+    <action name="Execute"><command>/tmp/anchor.sh</command></action>
+    
+  </keybind>
+
+

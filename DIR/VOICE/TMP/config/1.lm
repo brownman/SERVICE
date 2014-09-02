@@ -1,0 +1,85 @@
+Language model created by QuickLM on Sat Aug 23 02:25:25 EDT 2014
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 19 sentences and 17 words
+
+\data\
+ngram 1=17
+ngram 2=30
+ngram 3=15
+
+\1-grams:
+-0.7782 </s> -0.3010
+-0.7782 <s> -0.2218
+-2.0569 DA -0.2218
+-2.0569 I-TOLD-YOU -0.2218
+-2.0569 IDIOT -0.2218
+-2.0569 KILL -0.2218
+-1.7559 MAKE-ME-HAPPY -0.2218
+-2.0569 MY-FRIEND -0.2218
+-2.0569 NONONO -0.2218
+-1.7559 PLEASE -0.2218
+-2.0569 RESTART -0.2218
+-1.7559 ROBOT -0.2218
+-2.0569 SO -0.2218
+-2.0569 TRY-ANOTHER-ONE -0.2218
+-1.7559 UPDATE -0.2218
+-2.0569 WELL -0.2218
+-2.0569 YES -0.2218
+
+\2-grams:
+-1.5798 <s> DA 0.0000
+-1.5798 <s> I-TOLD-YOU 0.0000
+-1.5798 <s> IDIOT 0.0000
+-1.5798 <s> KILL 0.0000
+-1.2788 <s> MAKE-ME-HAPPY 0.0000
+-1.5798 <s> MY-FRIEND 0.0000
+-1.5798 <s> NONONO 0.0000
+-1.2788 <s> PLEASE 0.0000
+-1.5798 <s> RESTART 0.0000
+-1.2788 <s> ROBOT 0.0000
+-1.5798 <s> SO 0.0000
+-1.5798 <s> TRY-ANOTHER-ONE 0.0000
+-1.2788 <s> UPDATE 0.0000
+-1.5798 <s> WELL 0.0000
+-1.5798 <s> YES 0.0000
+-0.3010 DA </s> -0.3010
+-0.3010 I-TOLD-YOU </s> -0.3010
+-0.3010 IDIOT </s> -0.3010
+-0.3010 KILL </s> -0.3010
+-0.3010 MAKE-ME-HAPPY </s> -0.3010
+-0.3010 MY-FRIEND </s> -0.3010
+-0.3010 NONONO </s> -0.3010
+-0.3010 PLEASE </s> -0.3010
+-0.3010 RESTART </s> -0.3010
+-0.3010 ROBOT </s> -0.3010
+-0.3010 SO </s> -0.3010
+-0.3010 TRY-ANOTHER-ONE </s> -0.3010
+-0.3010 UPDATE </s> -0.3010
+-0.3010 WELL </s> -0.3010
+-0.3010 YES </s> -0.3010
+
+\3-grams:
+-0.3010 <s> DA </s>
+-0.3010 <s> I-TOLD-YOU </s>
+-0.3010 <s> IDIOT </s>
+-0.3010 <s> KILL </s>
+-0.3010 <s> MAKE-ME-HAPPY </s>
+-0.3010 <s> MY-FRIEND </s>
+-0.3010 <s> NONONO </s>
+-0.3010 <s> PLEASE </s>
+-0.3010 <s> RESTART </s>
+-0.3010 <s> ROBOT </s>
+-0.3010 <s> SO </s>
+-0.3010 <s> TRY-ANOTHER-ONE </s>
+-0.3010 <s> UPDATE </s>
+-0.3010 <s> WELL </s>
+-0.3010 <s> YES </s>
+
+\end\

@@ -1,0 +1,23 @@
+#runner: wallpaper_single.sh
+kill
+fortune 20 20 0
+agenda 400 340
+calendar 0 330 
+fu 20 20 0
+ascii 20 20 0
+
+
+done 20 20 0
+breakthrough 120 290 0
+idea 20 20 0
+
+
+learn_langs 0 0
+
+log1 500 100 0
+point 500 300 0
+
+
+log1 110 110 
+
+

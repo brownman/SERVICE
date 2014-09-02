@@ -1,0 +1,54 @@
+#export SSID=229F 
+#
+export driver=wext
+
+#
+
+
+## Globals
+export PROFILE_DIR="/etc/network.d"
+export IFACE_DIR="$PROFILE_DIR/interfaces"
+export SUBR_DIR="/usr/lib/network"
+export HOOKS_DIR="$SUBR_DIR/hooks"
+export CONN_DIR="$SUBR_DIR/connections"
+export STATE_DIR="/run/network"
+#
+export device=wlp5s0
+export device1=enp6s0 
+
+#export ap='00:18:39:BC:4F:52';
+export mac_ssid="00:30:4F:8D:4C:64"
+#ssid_mariana
+
+#export mode=managed;
+#export enc=off;
+use_ssid(){
+  local str="$1"
+    case $str in
+    4C64)
+    export ssid=NAAN-4C64
+    export key=51711824
+    ;;
+  mariana)
+    export ssid='mariana';
+  export key=12345678;
+  ;;
+  229F)
+    export ssid='NAAN-229F';
+  export key=00304f85;
+  ;;
+  **)
+    print error unknown ssid
+    ;;
+
+  esac
+}
+
+
+
+#export profile_name=$device
+#export file_wpa='/tmp/wpa1'
+
+#export encryption='wpa'
+#
+export -f use_ssid
