@@ -1,16 +1,17 @@
 #!/bin/bash
+notify-send crontab "$@"
 clear
 set -o nounset
 
 str_caller='$(eval echo caller)'
-gxmessage1='gxmessage -file /tmp/err'
+gxmessage1='gxmessage -file /tmp/err -timeout 5'
 MODE_TEST=false
 cmd_trap_err='trap trap_err_service ERR'
 #trap trap_exit_service EXIT
-#$cmd_trap_err
+$cmd_trap_err
 
 
-exec 2> >(tee /tmp/err >&2)
+exec 2> >(tee /tmp/err)
 
 clear(){
   $str_caller
@@ -78,9 +79,10 @@ trap_err_service(){
   xcowsay error
   use print
   print func
-  local str_caller="`caller`" 
-  local cmd="gvim  +${str_caller}"
-  $( gxmessage -file /tmp/err -entrytext "$cmd" ) &
+  $gxmessage1
+#  local str_caller="`caller`" 
+#  local cmd="gvim  +${str_caller}"
+#  $( gxmessage -file /tmp/err -entrytext "$cmd" ) &
   exiting 0
 }
 
