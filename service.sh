@@ -3,17 +3,30 @@
 #http://unix.stackexchange.com/questions/98829/how-to-start-a-script-with-clean-environment
 
 clear
+
+cmd_start="${@:-}"
+echo $cmd_start >/tmp/cmd_start
+cat /tmp/cmd_start 
+sleep 3
 echo >&2 cleaning env
-[ "$HOME" != "" ] && exec -c $0
+#[ "$HOME" != "" ] &&
+  exec -c 
+#$0
 SHELL=/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/games
 TERM=xterm
 DISPLAY=:0 
 #LOGNAME=paretech
-env
-sleep 4
+#env
 
 set -o nounset
+test -f /tmp/cmd_start
+cat /tmp/cmd_start
+cmd_start=$( cat /tmp/cmd_start )
+echo "cmd_start: $cmd_start "
+sleep 4
+
+
 #test -f /tmp/link || ( gxmessge 'install dir_root first' -timeout 10)
 notify-send crontab "$@"
 echo $(date +%H:%M) $@ >> /tmp/service
@@ -204,7 +217,7 @@ env
 #sleep 4
 }
 init1(){
-( steps )
+ steps 
 }
-cmd_start="${@:-}"
-( init1 )
+
+ init1 
