@@ -1,14 +1,28 @@
 #!/bin/bash
-notify-send crontab "$@"
+#env clean
+#http://unix.stackexchange.com/questions/98829/how-to-start-a-script-with-clean-environment
+
 clear
+echo >&2 cleaning env
+[ "$HOME" != "" ] && exec -c $0
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/games
+TERM=xterm
+DISPLAY=:0 
+#LOGNAME=paretech
+env
+sleep 4
+
 set -o nounset
+#test -f /tmp/link || ( gxmessge 'install dir_root first' -timeout 10)
+notify-send crontab "$@"
+echo $(date +%H:%M) $@ >> /tmp/service
 
 str_caller='$(eval echo caller)'
-gxmessage1='gxmessage -file /tmp/err -timeout 5'
+gxmessage1='gxmessage -file /tmp/err -timeout 25'
 MODE_TEST=false
 cmd_trap_err='trap trap_err_service ERR'
 #trap trap_exit_service EXIT
-$cmd_trap_err
 
 
 exec 2> >(tee /tmp/err)
@@ -46,7 +60,6 @@ install_symlink_to_service(){
 }
 
 activate_library(){
-  #$cmd_trap_err
   local file_lib=/tmp/library.cfg
   if [ -f "$file_lib" ];then
     source $file_lib
@@ -80,36 +93,35 @@ trap_err_service(){
   use print
   print func
   $gxmessage1
-#  local str_caller="`caller`" 
-#  local cmd="gvim  +${str_caller}"
-#  $( gxmessage -file /tmp/err -entrytext "$cmd" ) &
+  #  local str_caller="`caller`" 
+  #  local cmd="gvim  +${str_caller}"
+  #  $( gxmessage -file /tmp/err -entrytext "$cmd" ) &
   exiting 0
 }
 
 
 set_env(){
-#$cmd_trap_err
-set -u
+  set -u
 
   #test -v dir_CODEblah || { exiting 1; }
   dir_self="$( where_am_i )"
 
   export dir_SERVICE="$dir_self"
   export dir_SH="$dir_SERVICE/SH"
-  export dir_STEPPER="$dir_SERVICE/STEPPER"
+  export dir_VALIDATOR="$dir_SERVICE/VALIDATOR"
   export dir_LIST="$dir_SERVICE/LIST"
 }
 
 intro_start(){
   #    echo "[dir_SERVICE] $dir_SERVICE"
-  test -v dir_STEPPER || { exit 1; }
+  test -v dir_VALIDATOR || { exit 1; }
   print func
   print ok Genius You
   echo
-  print color 35 AVAILABLE STEPPERS
-  nl < <( ls -1 $dir_STEPPER )
+  print color 35 AVAILABLE VALIDATORS
+  nl < <( ls -1 $dir_VALIDATOR )
   echo
-print color 33 AVAILABLE SCRIPTS
+  print color 33 AVAILABLE SCRIPTS
   nl < <( ls -1 $dir_SH )
 }
 
@@ -119,7 +131,7 @@ stepper_run(){
   shift
   local args="${@:-}"
   local cmd
-  local file="$dir_STEPPER/${runner}.sh"
+  local file="$dir_VALIDATOR/${runner}.sh"
   if [ -f "$file" ];then
     if [ "${args[@]}" = edit ];then
       cmd="gvim  $file"
@@ -128,7 +140,8 @@ stepper_run(){
     fi
     echo "[cmd] $cmd"
     #  xcowsay "$cmd"
-    eval "$cmd"
+    commander "$cmd" 
+    #|| ( xcowsay "$str_caller" )
   else
     notify-send "no such file: $file" "$0"
   fi
@@ -141,18 +154,19 @@ ensure(){
 
 using1(){
   #  ls /tmp/library.cfg
-  source /tmp/library.cfg
+  #source /tmp/library_proto.cfg
   use indicator 
   use ps1 
   use ps4
   use commander
   indicator 0
+  echo
 }
 testing(){
   intro_start
   use assert
-  assert var_exist dir_STEPPER
-  assert dir_exist "$dir_STEPPER"
+  assert var_exist dir_VALIDATOR
+  assert dir_exist "$dir_VALIDATOR"
 }
 
 #passed
@@ -164,7 +178,7 @@ stepper_init(){
     print color 35 MODE_TEST is on
   else
     if [ -n "$cmd_start"  ];then
-      commander stepper_run $cmd_start
+      stepper_run $cmd_start
     else
       notify-send "no arguments" "$0"
     fi
@@ -174,15 +188,23 @@ stepper_init(){
 
 
 steps(){
+  #type $FUNCNAME
   set_env
   install_symlink_to_service
   activate_library
   using1
   intro_start
-commander   stepper_init 
-  #$cmd_trap_err
+  commander   stepper_init 
   #  ensure
   #  intro_start
 }
+print_env(){
+echo env
+env
+#sleep 4
+}
+init1(){
+( steps )
+}
 cmd_start="${@:-}"
-steps
+( init1 )

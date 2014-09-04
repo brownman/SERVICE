@@ -1,8 +1,11 @@
 #runner: wallpaper_single.sh
 kill
+service 10 600 0
+errors 30 300 0
+
 fortune 20 20 0
-agenda 400 340
-calendar 0 330 
+agenda 600 340
+calendar 200 330 
 fu 20 20 0
 ascii 20 20 0
 

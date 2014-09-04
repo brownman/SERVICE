@@ -1,0 +1,1 @@
+test -f /tmp/service

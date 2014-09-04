@@ -7,6 +7,8 @@ set +x
 set -o nounset
 use where_am_i
 use print
+use assert
+use commander
 
 #( assert network_alive ) || fix1
 #assert more_then "$#" 0
@@ -107,10 +109,9 @@ print_to_screen(){
 steps(){
     set_env
     use cat1
-    generate_txt
+    generate_txt && print_to_screen
+   # dialog_optional "gvim $dir_conf"
 
-    #  dialog_optional "gvim $dir_conf"
-    print_to_screen
 }
 
 cmd_trap_err='trap trap_err ERR'
