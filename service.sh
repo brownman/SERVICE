@@ -1,10 +1,38 @@
 #!/bin/bash
 #env clean
 #http://unix.stackexchange.com/questions/98829/how-to-start-a-script-with-clean-environment
+#use locking: lock, task run, unlock
+lock(){
+  set -u
+  set -e
 
-clear
+  local str=$cmd_start
+  local is_start=$1
+  local force=${2:-false}
+  local file=/tmp/${str}.pid
 
+  if [ $is_start = true ];then
+
+      notify-send "start" "$str"
+    commander  touch $file
+    echo $$ > $file
+  else
+      notify-send "end" "$str"
+    if [ $force = true ];then
+      [ -f $file ] && (     commander  rm $file  )
+    else
+      notify-send "already running:" "$str"
+
+      [ -f $file ] && (  sleep 300;   commander  rm $file  )
+
+      notify-send "force unlocking:" "$str"
+      #lock false true
+      exit
+    fi
+  fi
+}
 cmd_start="${@:-}"
+
 echo $cmd_start >/tmp/cmd_start
 cat /tmp/cmd_start 
 sleep 3
@@ -35,12 +63,12 @@ str_caller='$(eval echo caller)'
 gxmessage1='gxmessage -file /tmp/err -timeout 25'
 MODE_TEST=false
 cmd_trap_err='trap trap_err_service ERR'
-#trap trap_exit_service EXIT
 
 
 exec 2> >(tee /tmp/err)
 
 clear(){
+  print func
   $str_caller
 }
 
@@ -99,17 +127,20 @@ trap_exit_service(){
   echo ------
   echo $FUNCNAME
   echo "[CALLER] `caller`"
+  trap - EXIT 
+  exit
 }
 
 trap_err_service(){
   xcowsay error
   use print
   print func
-  $gxmessage1
+  $str_caller
+#  $gxmessage1
   #  local str_caller="`caller`" 
   #  local cmd="gvim  +${str_caller}"
   #  $( gxmessage -file /tmp/err -entrytext "$cmd" ) &
-  exiting 0
+  exit 0
 }
 
 
@@ -191,7 +222,9 @@ stepper_init(){
     print color 35 MODE_TEST is on
   else
     if [ -n "$cmd_start"  ];then
-      stepper_run $cmd_start
+commander lock true false 
+( stepper_run $cmd_start &>/dev/null )
+commander lock false true  
     else
       notify-send "no arguments" "$0"
     fi
@@ -206,18 +239,24 @@ steps(){
   install_symlink_to_service
   activate_library
   using1
+
   intro_start
   commander   stepper_init 
   #  ensure
   #  intro_start
 }
 print_env(){
-echo env
-env
-#sleep 4
+  echo env
+  env
+  #sleep 4
 }
 init1(){
- steps 
+  steps 
 }
+trap trap_exit_service EXIT
+$cmd_trap_err
 
- init1 
+
+
+init1 
+
