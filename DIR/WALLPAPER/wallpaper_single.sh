@@ -62,12 +62,13 @@ generate_txt(){
     trace "[generate txt]"
 
 
+
     export file_script="$dir_sh/${option}.sh" 
     cat1 $file_script true
     if [ -f "$file_script" ];then
 
 
-        local cmd="bash -c $file_script"
+        local cmd="source $file_script"
 
         file_out=/tmp/${option}
         commander "$cmd" 1>$file_out
@@ -75,6 +76,11 @@ generate_txt(){
         cat1 $file_out
     else
         print warning "no generator: $file_script"
+
+        use dialog_optional
+
+     dialog_optional_edit $file_script
+#     chmod u+x $file_script
     fi
 
 }
@@ -83,6 +89,8 @@ print_to_screen(){
 
 
     local file="$dir_conf/${option}.conf"
+    use hotkey
+   hotkey_update "gvim $file"
     local cmd="conky -c $file -x $x -y $y -p $p"
     local str
 

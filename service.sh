@@ -13,19 +13,19 @@ lock(){
 
   if [ $is_start = true ];then
 
-      notify-send "start" "$str"
+      notify-send1 "start" "$str"
     commander  touch $file
     echo $$ > $file
   else
-      notify-send "end" "$str"
+      notify-send1 "end" "$str"
     if [ $force = true ];then
       [ -f $file ] && (     commander  rm $file  )
     else
-      notify-send "already running:" "$str"
+      notify-send1 "already running:" "$str"
 
       [ -f $file ] && (  sleep 300;   commander  rm $file  )
 
-      notify-send "force unlocking:" "$str"
+      notify-send1 "force unlocking:" "$str"
       #lock false true
       exit
     fi
@@ -56,7 +56,7 @@ sleep 4
 
 
 #test -f /tmp/link || ( gxmessge 'install dir_root first' -timeout 10)
-notify-send crontab "$@"
+#notify-send crontab "$@"
 echo $(date +%H:%M) $@ >> /tmp/service
 
 str_caller='$(eval echo caller)'
@@ -187,7 +187,7 @@ stepper_run(){
     commander "$cmd" 
     #|| ( xcowsay "$str_caller" )
   else
-    notify-send "no such file: $file" "$0"
+    notify-send1 "no such file: $file" "$0"
   fi
 
 }
@@ -200,6 +200,7 @@ using1(){
   #  ls /tmp/library.cfg
   #source /tmp/library_proto.cfg
   use indicator 
+  use notify-send1
   use ps1 
   use ps4
   use commander
@@ -226,7 +227,7 @@ commander lock true false
 ( stepper_run $cmd_start &>/dev/null )
 commander lock false true  
     else
-      notify-send "no arguments" "$0"
+      notify-send1 "no arguments" "$0"
     fi
   fi
   #  popd >/dev/null
