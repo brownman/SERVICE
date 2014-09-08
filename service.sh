@@ -78,13 +78,6 @@ exiting(){
   exit 0
 }
 
-install_symlink_to_hotkey(){
-  if [ ! -f /tmp/hotkey.sh ] ;then
-    ln -s "$dir_SERVICE/SH/hotkey.sh" /tmp
-  fi
-  [ ! -f /tmp/hotkey.txt ] || ( rm /tmp/hotkey.txt )
-}
-
 
 install_symlink_to_service(){
   if [ ! -f /tmp/service.sh ];then
