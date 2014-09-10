@@ -29,7 +29,7 @@ func1(){
   print func
 
 
-  dialog_optional_edit  $file_list 
+  dialog_hotkey "edit $file_list" "gvim $file_list"
   #killall conky
   local cmd="act_on_list $file_list $script"
   ( commander $cmd  ) 
