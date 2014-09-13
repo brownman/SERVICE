@@ -90,7 +90,8 @@ print_to_screen(){
   local file="$dir_conf/${option}.conf"
 
  # hotkey_update "gvim $file"
-    dialog_hotkey "edit $file" "gvim $file"
+ local filename=$( basename $file )
+ dialog_recent "edit $( $filename  )" "gvim $file"
   local cmd="conky -c $file -x $x -y $y -p $p"
   local str
 

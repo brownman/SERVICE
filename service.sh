@@ -12,32 +12,12 @@ print color 33 dir_self $dir_self
 #pushd "$dir_self" >/dev/null
 
 
-
-lock(){
-  set -u
-  set -e
-  local str="$cmd_start"
-  assert string_has_content "$str"
-  local is_start="$1"
-  local force="${2:-false}"
-  local file="/tmp/${str}.pid"
-  if [ $is_start = true ];then
-    notify-send1 "start" "$str"
-    commander  touch $file
-    echo "$$" > $file
-  else
-    notify-send1 "end" "$str"
-    if [ $force = true ];then
-      [ -f "$file" ] && (     commander  rm "$file"  )
-    else
-      notify-send1 "already running:" "$str"
-      [ -f $file ] && (  sleep 300;   commander  rm $file  )
-      notify-send1 "force unlocking:" "$str"
-      #lock false true
-      exiting
-    fi
-  fi
+log(){
+  local line1="$(date +%H:%M) : ${line[0]}"
+  echo "$line1"  >> /tmp/service
 }
+
+
 
 clear(){
   print func
@@ -112,7 +92,9 @@ using1(){
   #  ls /tmp/library.cfg
   #source /tmp/library_proto.cfg
   use indicator 
+  use vars
   use notify-send1
+  use assert
   use where_am_i
   use ps1 
   use ps4
@@ -120,10 +102,15 @@ using1(){
 }
 
 testing(){
-  type $FUNCNAME
-  use assert
-  assert var_exist dir_VALIDATOR
-  assert dir_exist "$dir_VALIDATOR"
+
+  using1
+  set_env
+
+#commander lock true false 
+
+#commander lock true false 
+##
+
 }
 
 stepper_init(){
@@ -132,9 +119,10 @@ stepper_init(){
     testing
   else
     if [ ${#line[@]} -ne 0  ];then
-      echo commander lock true false 
+#echo commander lock true false 
+log
       stepper_run 
-      echo       commander lock false true  
+#echo commander lock false true  
     else
       print color 33  "no arguments" "$0"
       notify-send1 "no arguments" "$0"
@@ -156,7 +144,8 @@ print_env(){
 }
 
 readonly line=( $@ )
-steps
+
+testing && steps
 
 
 
