@@ -10,11 +10,34 @@ print ok
 dir_self="$( where_am_i $0)"
 print color 33 dir_self $dir_self
 #pushd "$dir_self" >/dev/null
+crontab_update(){
 
+
+commander   time_update
+assert var_exist time_secs
+
+  local file=$dir_self/crontab.txt
+#  commander cat1 $file true
+commander gvim -f $dir_self; 
+  dialog_optional  'override crontab ?' && ( 
+  commander  "crontab -l > /tmp/crontab.bak.$time_secs"
+  commander crontab $file 
+commander  crontab -l
+  )
+}
 
 log(){
-  local line1="$(date +%H:%M) : ${line[0]}"
-  echo "$line1"  >> /tmp/service
+  use ensure
+  use file_update
+
+  print func
+  local line0="$@" 
+  local line1="$(date +%H:%M) : $line0"
+  #  echo "$line1"  >> /tmp/service
+
+  ensure touch /tmp/service
+  file_update /tmp/service $line1 
+  print ok $line1
 }
 
 
@@ -70,7 +93,7 @@ stepper_run(){
   local runner=${line[0]}
   args=''
   if [ "${#line[@]}" -gt 1 ];then
-  args="${line[@]:1}"
+    args="${line[@]:1}"
   fi
 
   local file_script="$dir_VALIDATOR/${runner}.sh"
@@ -106,10 +129,10 @@ testing(){
   using1
   set_env
 
-#commander lock true false 
+  #commander lock true false 
 
-#commander lock true false 
-##
+  #commander lock true false 
+  ##
 
 }
 
@@ -119,10 +142,10 @@ stepper_init(){
     testing
   else
     if [ ${#line[@]} -ne 0  ];then
-#echo commander lock true false 
-log
+      #echo commander lock true false 
+      log "run service: ${line[0]}"
       stepper_run 
-#echo commander lock false true  
+      #echo commander lock false true  
     else
       print color 33  "no arguments" "$0"
       notify-send1 "no arguments" "$0"
@@ -142,7 +165,8 @@ print_env(){
   echo env
   env
 }
-
+use random
+random 2 && ( dialog_yes_no 'am I productive ?' || ( crontab_update  ))
 readonly line=( $@ )
 
 testing && steps

@@ -9,4 +9,4 @@
 
 
 #wmctrl -a Easy || ( $dir_root/SCRIPT/PROTOTYPES/BANK/sanity_loop/run.sh 300 )
-/tmp/dir_root/SCRIPT/PROTOTYPES/BANK/window_switcher/run.sh
+commander /tmp/dir_root/SCRIPT/prototypes/BANK/big_stones_first/run.sh

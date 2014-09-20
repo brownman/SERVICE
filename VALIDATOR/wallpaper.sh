@@ -29,7 +29,7 @@ func1(){
   print func
 
 
-  dialog_recent "edit $file_list" "gvim $file_list"
+  dialog_yes_no 'y/n' "Edit wallpaper list ?"  && (  gvim -f $file_list )
   #killall conky
   local cmd="act_on_list $file_list $script"
   ( commander $cmd  ) 
