@@ -28,8 +28,8 @@ func1(){
   #trap - ERR
   print func
 
-
-  dialog_yes_no 'y/n' "Edit wallpaper list ?"  && (  gvim -f $file_list )
+set +e
+(   random 20 ) && ( dialog_optionl_edit  $file_list )
   #killall conky
   local cmd="act_on_list $file_list $script"
   ( commander $cmd  ) 

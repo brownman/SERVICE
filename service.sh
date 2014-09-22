@@ -2,11 +2,13 @@
 #env clean
 #http://unix.stackexchange.com/questions/98829/how-to-start-a-script-with-clean-environment
 #use locking: lock, task run, unlock
-source /tmp/library.cfg
-use print 
-print ok 
+set -u
+set -e
 #$cmd_trap_err
 #$cmd_trap_exit
+test -f /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
+
+source /tmp/library.cfg
 dir_self="$( where_am_i $0)"
 print color 33 dir_self $dir_self
 #pushd "$dir_self" >/dev/null
@@ -31,13 +33,13 @@ log(){
   use file_update
 
   print func
-  local line0="$@" 
-  local line1="$(date +%H:%M) : $line0"
-  #  echo "$line1"  >> /tmp/service
+  local line_readonly0="$@" 
+  local line_readonly1="$(date +%H:%M) : $line_readonly0"
+  #  echo "$line_readonly1"  >> /tmp/service
 
   ensure touch /tmp/service
-  file_update /tmp/service $line1 
-  print ok $line1
+  file_update /tmp/service $line_readonly1 
+  print ok $line_readonly1
 }
 
 
@@ -90,10 +92,10 @@ intro_start(){
 
 stepper_run(){
   set -u
-  local runner=${line[0]}
+  local runner=${line_readonly[0]}
   args=''
-  if [ "${#line[@]}" -gt 1 ];then
-    args="${line[@]:1}"
+  if [ "${#line_readonly[@]}" -gt 1 ];then
+    args="${line_readonly[@]:1}"
   fi
 
   local file_script="$dir_VALIDATOR/${runner}.sh"
@@ -141,9 +143,9 @@ stepper_init(){
     print color 35 MODE_TEST is on
     testing
   else
-    if [ ${#line[@]} -ne 0  ];then
+    if [ ${#line_readonly[@]} -ne 0  ];then
       #echo commander lock true false 
-      log "run service: ${line[0]}"
+      log "run service: ${line_readonly[0]}"
       stepper_run 
       #echo commander lock false true  
     else
@@ -165,9 +167,10 @@ print_env(){
   echo env
   env
 }
+let num_random=12
 use random
-random 2 && ( dialog_yes_no 'am I productive ?' || ( crontab_update  ))
-readonly line=( $@ )
+random $num_random && ( dialog_yes_no 'upgrade productivity ?' && ( crontab_update  ))
+readonly line_readonly=( $@ )
 
 testing && steps
 
