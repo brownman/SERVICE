@@ -29,16 +29,13 @@ commander  crontab -l
 }
 
 log(){
-  use ensure
-  use file_update
 
   print func
   local line_readonly0="$@" 
   local line_readonly1="$(date +%H:%M) : $line_readonly0"
   #  echo "$line_readonly1"  >> /tmp/service
 
-  commander ensure touch /tmp/service
-  assert file_exist /tmp/service
+touch /tmp/service
   file_update /tmp/service "$line_readonly1"
   print ok $line_readonly1
 }
@@ -102,7 +99,7 @@ stepper_run(){
   local file_script="$dir_VALIDATOR/${runner}.sh"
   local cmd="$file_script $args"
   if [ -f "$file_script" ];then
-    commander "$cmd" 
+    commander_gxmessage "$cmd" 
   else
     print error "no such file: $file_script"
     notify-send1 $0 "no such file: $file_script"
