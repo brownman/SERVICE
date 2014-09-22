@@ -37,8 +37,9 @@ log(){
   local line_readonly1="$(date +%H:%M) : $line_readonly0"
   #  echo "$line_readonly1"  >> /tmp/service
 
-  ensure touch /tmp/service
-  file_update /tmp/service $line_readonly1 
+  commander ensure touch /tmp/service
+  assert file_exist /tmp/service
+  file_update /tmp/service "$line_readonly1"
   print ok $line_readonly1
 }
 
