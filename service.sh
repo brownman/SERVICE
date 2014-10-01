@@ -12,22 +12,6 @@ source /tmp/library.cfg
 dir_self="$( where_am_i $0)"
 print color 33 dir_self $dir_self
 #pushd "$dir_self" >/dev/null
-crontab_update(){
-
-
-commander   time_update
-assert var_exist time_secs
-
-  local file=$dir_self/crontab.txt
-#  commander cat1 $file true
-commander gvim -f $dir_self; 
-  dialog_optional  'override crontab ?' && ( 
-  commander  "crontab -l > /tmp/crontab.bak.$time_secs"
-  commander crontab $file 
-commander  crontab -l
-  )
-}
-
 log(){
 
   print func
@@ -45,12 +29,6 @@ touch /tmp/service
 clear(){
   print func
   $str_caller
-}
-
-exiting(){
-  echo "[exiting]"
-  commander $str_caller
-  exiting0
 }
 
 
@@ -77,7 +55,7 @@ set_env(){
 
 intro_start(){
   #    echo "[dir_SERVICE] $dir_SERVICE"
-  test -v dir_VALIDATOR || { exiting1; }
+  test -v dir_VALIDATOR || { exiting; }
   print func
   print ok Genius You
   echo
@@ -165,9 +143,6 @@ print_env(){
   echo env
   env
 }
-let num_random=12
-use random
-random $num_random && ( dialog_yes_no 'upgrade productivity ?' && ( crontab_update  ))
 readonly line_readonly=( $@ )
 
 testing && steps
