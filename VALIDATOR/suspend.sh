@@ -23,14 +23,16 @@ suspending(){
   flite -t 'update the missions'
 }
 
-dialog_optional 'update missions ?' 
-res=$?
-if [ $res -eq 0 ];then
-  random 4 && suspending || ( missions
-  dialog_sleep 30 missions
+#dialog_optional 'update missions ?' 
+#res=$?
+#if [ $res -eq 0 ];then
+ # random 4 && suspending || ( missions
+ # dialog_sleep 30 missions
+ # suspending
+ # )
+#else
+missions
+dialog_sleep 60
   suspending
-  )
-else
-  suspending
-fi
+#fi
 

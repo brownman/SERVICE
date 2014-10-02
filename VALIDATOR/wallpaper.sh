@@ -21,7 +21,7 @@ set_env(){
 }
 intro(){
   local str="$1"
-  xcowsay "wallpaper update $str"
+  xcowsay "wallpaper update $str" 
 }
 
 func1(){
@@ -40,8 +40,11 @@ steps(){
   set_env
   intro start
   func1
-  intro start
+  intro finish
 
 }
+
+dialog_optional minimize 'wmctrl -k on' &
 steps
 echo
+

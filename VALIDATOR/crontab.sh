@@ -9,8 +9,8 @@ use dialog_optional
 
   local file=$dir_SERVICE/crontab.txt
 
-  dialog_optional  'update services ?' && ( 
-  commander gvim -f $dir_SERVICE; 
+#  dialog_optional  'update services ?' && ( 
+  #commander gvim -f $dir_SERVICE; 
   dialog_optional  'edit crontab ?' && ( 
   gvim -f $file
   commander  "crontab -l > /tmp/crontab.bak.$time_secs"

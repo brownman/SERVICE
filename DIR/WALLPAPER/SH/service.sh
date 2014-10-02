@@ -1,1 +1,1 @@
-test -f /tmp/service
+tail -4  /tmp/service

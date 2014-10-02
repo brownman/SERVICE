@@ -51,6 +51,7 @@ set_env(){
   export dir_SH="$dir_SERVICE/SH"
   export dir_VALIDATOR="$dir_SERVICE/VALIDATOR"
   export dir_LIST="$dir_SERVICE/LIST"
+  export dir_PROTOTYPTE="/tmp/dir_root/SCRIPT/prototypes/BANK"
 }
 
 intro_start(){
@@ -77,6 +78,9 @@ stepper_run(){
   local file_script="$dir_VALIDATOR/${runner}.sh"
   local cmd="$file_script $args"
   if [ -f "$file_script" ];then
+    cat1 $file_script true
+   # sleep 2
+   print line
     commander_gxmessage "$cmd" 
   else
     print error "no such file: $file_script"

@@ -1,1 +1,1 @@
-cat ~/possible.yaml
+cat ~/possible.yaml | head -9

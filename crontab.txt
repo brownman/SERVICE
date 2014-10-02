@@ -12,15 +12,15 @@ mute=true
 #* * * * * test -f /tmp/service.sh || ( xcowsay '/tmp/service.sh not exist' )
 #*/15 * * * * sleep 10; xcowsay "call X !!!"
 #*/11 * * * * sleep 20; xcowsay "move your back - Around and Round ???"
-#*/12 * * * * /tmp/service.sh wallpaper
+*/25 * * * * /tmp/service.sh wallpaper
 */10 * * * * sleep 10; /tmp/service.sh motivation
 #*/10 * * * * rm /tmp/service
 */30 * * * * /tmp/service.sh suspend
 #*/20 * * * * /tmp/service.sh big_stones_first
-#*/20 * * * * /tmp/service.sh sanity
+*/20 * * * * /tmp/service.sh sanity
 */10 * * * * sleep 30; /tmp/service.sh lang $lang
 58 * * * * /tmp/service.sh crontab
 #*/9 * * * * xcowsay 'free 1min every 9min';sleep 60; xcowsay 'finish free time'
 #* * * * *  xcowsay 'sport: move your back around and round'
-*/10 * * * * /tmp/service.sh certExam
+*/30 * * * * /tmp/service.sh certExam
 59 * * * * /tmp/service.sh ensure_service
