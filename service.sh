@@ -3,7 +3,7 @@
 #http://unix.stackexchange.com/questions/98829/how-to-start-a-script-with-clean-environment
 #use locking: lock, task run, unlock
 set -u
-set -e
+#set -e
 #$cmd_trap_err
 #$cmd_trap_exit
 test -f /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
@@ -19,8 +19,8 @@ log(){
   local line_readonly1="$(date +%H:%M) : $line_readonly0"
   #  echo "$line_readonly1"  >> /tmp/service
 
-touch /tmp/service
-  file_update /tmp/service "$line_readonly1"
+  touch /tmp/service
+  commander file_update /tmp/service "$line_readonly1"
   print ok $line_readonly1
 }
 
@@ -79,12 +79,12 @@ stepper_run(){
   local cmd="$file_script $args"
   if [ -f "$file_script" ];then
     cat1 $file_script true
-   # sleep 2
-   print line
+    # sleep 2
+    print line
     commander_gxmessage "$cmd" 
   else
     print error "no such file: $file_script"
-    notify-send1 $0 "no such file: $file_script"
+    notify-send1 "$0" "no such file: $file_script"
   fi
 }
 ensure(){
@@ -147,9 +147,61 @@ print_env(){
   echo env
   env
 }
-readonly line_readonly=( $@ )
 
+display_help(){
+  using1
+  set_env
+  intro_start
+
+}  # Call your function
+
+while getopts ":e:" opt; do
+
+  #http://wiki.bash-hackers.org/scripting/posparams
+  case $opt in
+    -h | --help)
+      display_help
+      # no shifting needed here, we're done.
+      exit 0
+      ;;
+    -v | --verbose)
+      set -e;
+      set -x;
+      ;; 
+    e)
+      echo "-e was triggered, Parameter: $OPTARG" >&2
+      
+
+      file=/tmp/dir_root/SCRIPT/SERVICE/VALIDATOR/${OPTARG}.sh
+      commander "assert file_exist $file"
+      gvim -f $file
+
+      exit 0
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo no params
+
+
+#
+#set ${@:}"This is" my new ÃŸet of" positional parameters
+
+      #sleep 2
+
+      ;;
+  esac
+done
+
+
+readonly line_readonly=( $@ )
 testing && steps
+
+
+
+
 
 
 

@@ -31,7 +31,10 @@ suspending(){
  # suspending
  # )
 #else
-missions
+#missions
+
+/tmp/service.sh game &
+
 dialog_sleep 60
   suspending
 #fi

@@ -19,7 +19,6 @@ use dialog_optional
 
   cat $file | grep -v '\#'
   )
-  )
 }
 
 

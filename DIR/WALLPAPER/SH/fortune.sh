@@ -2,4 +2,5 @@
 #set -e
 
 #ascii2
-fortune
+fortune -s
+

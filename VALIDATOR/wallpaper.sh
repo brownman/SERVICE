@@ -44,7 +44,9 @@ steps(){
 
 }
 
-dialog_optional minimize 'wmctrl -k on' &
+#dialog_optional minimize "$cmd" &
+cmd_minimize='wmctrl -k on'
+commander $cmd_minimize
 steps
 echo
 

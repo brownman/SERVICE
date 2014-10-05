@@ -4,21 +4,22 @@ ensure_service(){
 #atd
 local service="$1"
 systemctl status $service && ( notify-send $service 'is working' ) || ( 
-dialog_optional "restart $service ?" &&  ( commander gksu systemctl start
-$service ))
+dialog_optional "restart $service ?" &&  ( commander gksu systemctl start $service ))
+xcowsay $?
 
 }
 
 
-
-service=atd
-commander "ensure_service $service"
+min=${1:-30}
 
 service=cronie
 commander "ensure_service $service"
+service=atd
+commander "ensure_service $service"
+
 
 
 print color 33 'recursive call:' 
-commander /tmp/service.sh remind 30 '/tmp/service.sh ensure_service'
+commander /tmp/service.sh remind $min '/tmp/service.sh ensure_service'
 
 
