@@ -32,7 +32,9 @@ suspending(){
  # )
 #else
 #missions
-
+use point
+point_up
+point_show
 /tmp/service.sh game &
 
 dialog_sleep 60

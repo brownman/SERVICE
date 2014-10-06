@@ -1,4 +1,6 @@
 #SIOCSIFFLAGS: Operation not possible due to RF-kill
+use grep_color
+
 echo reproduce:
 ifconfig_down
 

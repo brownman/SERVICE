@@ -10,4 +10,4 @@ cat $file | grep 'psk' | grep -v '\#' | cut -d'=' -f2
 #commander mv "$file" "$dir_profile/"
 #commander "cat1 $dir_profile/$filename true"
 }
-run $1
+run 

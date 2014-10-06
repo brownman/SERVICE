@@ -1,5 +1,6 @@
 use where_am_i
 dir_self=`where_am_i ${BASH_SOURCE:-$0}`
+export dir_parent=$dir_self
 
 pushd $dir_self >/dev/null
 #$cmd_trap_err

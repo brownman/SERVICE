@@ -7,7 +7,7 @@ cmd_err="'gxmessage -file /tmp/err' -title cron_err -sticky -ontop -timeout 10"
 gxmessage1="gxmessage -file /tmp/err -title cron_err -timeout 29"
 lang=IT
 #RU
-mute=true
+MODE_SOUND=false
 #* * * * * env > /tmp/env
 #* * * * * test -f /tmp/service.sh || ( xcowsay '/tmp/service.sh not exist' )
 #*/15 * * * * sleep 10; xcowsay "call X !!!"

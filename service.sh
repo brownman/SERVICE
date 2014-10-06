@@ -16,9 +16,9 @@ log(){
 
   print func
   local line_readonly0="$@" 
-  local line_readonly1="$(date +%H:%M) : $line_readonly0"
+  local line_readonly1="$(date +%H:%M:%S) : $line_readonly0"
   #  echo "$line_readonly1"  >> /tmp/service
-
+notify-send 'log' "${line_readonly1}"
   touch /tmp/service
   commander file_update /tmp/service "$line_readonly1"
   print ok $line_readonly1
@@ -195,7 +195,7 @@ while getopts ":e:" opt; do
   esac
 done
 
-
+hotkey_overide /tmp/service.sh crontab
 readonly line_readonly=( $@ )
 testing && steps
 
