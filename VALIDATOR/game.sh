@@ -1,5 +1,5 @@
-
-run(){
+/tmp/pilot.sh GAME
+run1(){
 local file=$dir_workspace/game.txt
 #ensure touch $file
 test -f $file || ( gvim -f $file )
@@ -12,5 +12,5 @@ local str=$( commander dialog_menu_multiple $file )
 commander open_with $str
 }
 
-run
+#run
 
