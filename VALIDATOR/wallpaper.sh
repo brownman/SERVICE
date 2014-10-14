@@ -38,15 +38,13 @@ set +e
 steps(){
   using2
   set_env
-  intro start
+#  intro start
   func1
   intro finish
 
 }
 
 #dialog_optional minimize "$cmd" &
-cmd_minimize='wmctrl -k on'
-commander $cmd_minimize
+#cmd_minimize='wmctrl -k on' #it won't work because conkey elements are actually windows :(
+#commander $cmd_minimize
 steps
-echo
-

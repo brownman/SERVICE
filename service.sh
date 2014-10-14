@@ -4,15 +4,17 @@
 #use locking: lock, task run, unlock
 set -u
 #set -e
-#$cmd_trap_err
+
 #$cmd_trap_exit
 test -f /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
 
 source /tmp/library.cfg
+
+$cmd_trap_err
 dir_self="$( where_am_i $0)"
 print color 33 dir_self $dir_self
 #pushd "$dir_self" >/dev/null
-log(){
+log123(){
 
   print func
   local line_readonly0="$@" 
@@ -125,7 +127,7 @@ stepper_init(){
   else
     if [ ${#line_readonly[@]} -ne 0  ];then
       #echo commander lock true false 
-      log "run service: ${line_readonly[0]}"
+      log123 "run service: ${line_readonly[0]}"
       stepper_run 
       #echo commander lock false true  
     else
@@ -170,11 +172,14 @@ while getopts ":e:" opt; do
       ;; 
     e)
       echo "-e was triggered, Parameter: $OPTARG" >&2
-      
+     commander sleep 4 
 
       file=/tmp/dir_root/SCRIPT/SERVICE/VALIDATOR/${OPTARG}.sh
-      commander "assert file_exist $file"
+#      commander "assert file_exist $file"
+test -f $file && (     cat1 $file true; dialog_optional_edit $file  ) || (
       gvim -f $file
+      chmod u+x $file
+      )
 
       exit 0
       ;;

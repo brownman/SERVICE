@@ -2,18 +2,19 @@
 kill
 service 0 300 0
 possible  10 10 0
+point 10 800 0
 genius 10 10 0
-fu 0 300 0
-fortune 220 220 0
+fortune 0 220 0
 ascii 20 20 0
-
+fu 0 300 0
+agenda 600 340
 
 errors 0 0 0
 
 
 
 
-agenda 600 340
+
 calendar 200 330 
 
 done 20 20 0
