@@ -1,1 +1,1 @@
-tail -4  /tmp/service
+tail -4  /tmp/service.log

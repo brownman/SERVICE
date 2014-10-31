@@ -20,7 +20,7 @@ MODE_SOUND=false
 */10 * * * * /tmp/service.sh sanity
 
 */9 * * * * /tmp/service.sh sport
-#*/10 * * * * sleep 30; /tmp/service.sh lang $lang
+*/30 * * * * sleep 30; /tmp/service.sh lang $lang
 #58 * * * * /tmp/service.sh crontab
 #*/9 * * * * xcowsay 'free 1min every 9min';sleep 60; xcowsay 'finish free time'
 #* * * * *  xcowsay 'sport: move your back around and round'

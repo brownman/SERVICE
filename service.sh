@@ -9,8 +9,9 @@ set -u
 test -f /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
 
 source /tmp/library.cfg
+export file_log=/tmp/service.log
 
-$cmd_trap_err
+#$cmd_trap_err
 dir_self="$( where_am_i $0)"
 print color 33 dir_self $dir_self
 #pushd "$dir_self" >/dev/null
@@ -21,9 +22,11 @@ log123(){
   local line_readonly1="$(date +%H:%M:%S) : $line_readonly0"
   #  echo "$line_readonly1"  >> /tmp/service
 notify-send 'log' "${line_readonly1}"
-  touch /tmp/service
-  commander file_update /tmp/service "$line_readonly1"
+  touch $file_log
+  #/tmp/service
+  file_update $file_log "$line_readonly1"
   print ok $line_readonly1
+commander   sleep 1
 }
 
 
@@ -80,6 +83,8 @@ stepper_run(){
   local file_script="$dir_VALIDATOR/${runner}.sh"
   local cmd="$file_script $args"
   if [ -f "$file_script" ];then
+    dialog_recent "task: $runner" "gvim $file_script"
+    
     cat1 $file_script true
     # sleep 2
     print line
@@ -200,8 +205,8 @@ test -f $file && (     cat1 $file true; dialog_optional_edit $file  ) || (
   esac
 done
 
-hotkey_overide /tmp/service.sh crontab
-readonly line_readonly=( $@ )
+#hotkey_overide /tmp/service.sh crontab
+line_readonly=( $@ )
 testing && steps
 
 
