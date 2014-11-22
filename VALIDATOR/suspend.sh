@@ -33,8 +33,11 @@ black(){
 
 
 update_missions(){
-  gvim $dir_workspace/missions.yaml
-  open_with "$url_todo"
+#wmctrl -a gvim ||  (   gvim $dir_workspace/missions.yaml )
+xcowsay 'updating missions..'
+#  open_with "$url_todo"
+url1='http://drichard.org/mindmaps/'
+wmctrl -a mindmap ||    ( open_with "$url1" )
 
 }
 decide(){
@@ -43,31 +46,32 @@ decide(){
 dialog_optional 'Am I a man of honour ?'
   local res=$?
   if [ $res -eq 0 ];then
-    xcowsay "great choice - but I may cancel it "
-    sleep 1
-    random 5
-    test $? -eq 0 && black
-    hotkey_overide 'suspension game' '/tmp/service.sh game &'
-    sleeping 
-  else
-    point_reset
-    point_show
-    black
+    xcowsay "great choice !"
+    #- but I may cancel it "
+    #sleep 1
+    #random 5
+    #test $? -eq 0 && black
+   # hotkey_overide 'suspension game' '/tmp/service.sh game &'
+  #  sleeping 
+ # else
+    #point_reset
+    #point_show
+    #black
   fi 
 }
 
 steps(){
 
   ### SOUND -
-  xcowsay 'I do it for Lir'
+#  xcowsay 'I do it for Lir'
   set_env
   commander "$vol1"
-  intro
+  random 6 && intro
 ################### game or die
-  decide 
+  random 3 && decide 
 ############ UPGRADE
-  update_missions
-  wmctrl -a gvim || (   dialog_optional_edit "$(who_am_i $0)" )
+update_missions
+  #( random 10 ) && (   dialog_optional_edit "$(who_am_i $0)" )
   ### SOUND +
   commander "$vol0"
 

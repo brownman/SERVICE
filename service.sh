@@ -3,7 +3,7 @@
 #http://unix.stackexchange.com/questions/98829/how-to-start-a-script-with-clean-environment
 #use locking: lock, task run, unlock
 set -u
-#set -e
+set -e
 
 #$cmd_trap_exit
 test -f /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
@@ -83,7 +83,7 @@ stepper_run(){
   local file_script="$dir_VALIDATOR/${runner}.sh"
   local cmd="$file_script $args"
   if [ -f "$file_script" ];then
-    dialog_recent "task: $runner" "gvim $file_script"
+#    dialog_recent "task: $runner" "gvim $file_script"
     
     cat1 $file_script true
     # sleep 2
