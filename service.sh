@@ -3,10 +3,10 @@
 #http://unix.stackexchange.com/questions/98829/how-to-start-a-script-with-clean-environment
 #use locking: lock, task run, unlock
 set -u
-set -e
+#set -e
 
 #$cmd_trap_exit
-test -f /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
+test -L /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
 
 source /tmp/library.cfg
 export file_log=/tmp/service.log
