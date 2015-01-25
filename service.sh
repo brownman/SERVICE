@@ -4,7 +4,7 @@
 #use locking: lock, task run, unlock
 set -u
 #set -e
-
+#set -x
 #$cmd_trap_exit
 test -L /tmp/library.cfg || { echo 1>&2 install  the library first; exit 0; }
 
@@ -21,7 +21,7 @@ log123(){
   local line_readonly0="$@" 
   local line_readonly1="$(date +%H:%M:%S) : $line_readonly0"
   #  echo "$line_readonly1"  >> /tmp/service
-notify-send 'log' "${line_readonly1}"
+notify-send 'log' "${line_readonly1}" &
   touch $file_log
   #/tmp/service
   file_update $file_log "$line_readonly1"
@@ -91,7 +91,7 @@ stepper_run(){
     commander_gxmessage "$cmd" 
   else
     print error "no such file: $file_script"
-    notify-send1 "$0" "no such file: $file_script"
+    notify-send1 "$0" "no such file: $file_script" &
   fi
 }
 ensure(){
@@ -137,7 +137,7 @@ stepper_init(){
       #echo commander lock false true  
     else
       print color 33  "no arguments" "$0"
-      notify-send1 "no arguments" "$0"
+      notify-send1 "no arguments" "$0" &
     fi
   fi
 }
