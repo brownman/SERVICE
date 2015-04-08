@@ -1,6 +1,8 @@
-source /tmp/library.cfg
 
+source /tmp/library.cfg
+use indicator
 use where_am_i
+
 dir_self=`where_am_i ${BASH_SOURCE:-$0}`
 export dir_parent=$dir_self
 
@@ -12,7 +14,8 @@ set_env(){
   use indicator
   source network.cfg
   source network_vars.1st
-  SSID=229F
+  #SSID=229F
+  SSID=Linnovate
   commander use_ssid "$SSID"
   use assert
   type $FUNCNAME

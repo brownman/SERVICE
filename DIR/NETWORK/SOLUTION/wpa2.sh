@@ -11,8 +11,9 @@ echo Successfully initialized wpa_supplicant
 
 #$dir_parent/GENERATOR/wpa2.sh
 file="/tmp/wpa0"
-assert file_exist "$file"
+#assert file_exist "$file"
+device=wlan0
 commander "sudo wpa_supplicant  -D$driver -i$device -c$file" 
 commander sudo dhclient $device #get ip address
-commander cat /etc/resolve.conf
+commander cat /etc/resolv.conf
 commander ping1

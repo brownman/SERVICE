@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>blather - Debian - Open wiki - Gitorious</title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="/assets/application-baf82bcef249f32192641b6c4c4eee44.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/dist/bootstrap/css/bootstrap.min.css?1422010764" rel="stylesheet" type="text/css">
+      <link href="/dist/bootstrap/css/bootstrap-responsive.min.css?1422010764" rel="stylesheet" type="text/css">
+      <link href="/dist/css/gitorious3.min.css?1422010764" rel="stylesheet" type="text/css">
+      <link href="/ui3/js/lib/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css">
+      <link href="/assets/issues/application.css" rel="stylesheet" type="text/css">
+    
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-52238-3']);
+_gaq.push(['_setDomainName', '.gitorious.org'])
+_gaq.push(['_trackPageview']);
+(function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+})();
+</script>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="page-content">
+        <div class="gts-masthead navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              
+              <a href="/" class="gts-logo"><img src="/dist/images/gitorious2013.png" alt="Gitorious" title="Gitorious"></a>
+              <ul class="nav">
+                <li>
+                  <a href="/activities">Activities</a>
+                </li>
+                <li>
+                  <a href="/projects">Projects</a>
+                </li>
+                <li>
+                  <a href="/groups">Teams</a>
+                </li>
+                <li>
+                  <a href="/about">About</a>
+                </li>
+              </ul>
+              <div class="pull-right">
+                <form action="/search" class="navbar-search pull-left" method="get">
+                  <input type="search" placeholder="Search" class="search-query span2" name="q">
+                </form>
+                <div class="pull-right btn-group login_button">
+                  <a href="/login" class="btn btn-inverse">
+                    <i class="icon-user icon-white"></i> Sign in
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+        </div>
+          
+
+
+
+<div class="gts-site-header" data-gts-env-project-view-state-path="/users/view_state/project/blather.json"><div class="container">
+  <h2>
+    <a href="/blather">blather</a>
+  </h2>
+  <ul class="gts-project-links">
+    <li>
+      <a href="http://www.jezra.net/projects/blather">Home page</a>
+    </li>
+</ul>
+
+  <div class="gts-markup">
+    <p>Python application for speech recognition using pocketsphinx and gstreamer. A GUI is available for both Qt and Gtk.</p>
+
+  </div>
+  <ul class="nav nav-tabs gts-header-nav gts-pjax" data-gts-active=wiki>
+    <li><a href="/blather">Activities</a></li><li><a href="/blather/merge_requests">Merge Requests <span class="count">(0)</span></a></li><li class="active"><a href="/blather/pages/Home">Wiki</a></li><li><a href="/blather/community">Community</a></li>
+    <li class="gts-project-admin-ph gts-placeholder"></li>
+  </ul>
+</div></div>
+
+
+<div class="container" id="gts-pjax-container">
+    <p class="pull-right" style="margin-bottom: -1px;">
+    <a class="btn btn-primary" href="/blather/pages/Debian/edit">
+      <i class="icon icon-pencil"></i>
+      Edit page
+    </a>
+  </p>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="/blather/pages/Debian">Debian</a></li><li><a href="/blather/pages/Debian/history">History</a></li><li><a href="/blather/pages/git_access">Git access</a></li><li><a href="/blather/pages">Wiki index</a></li>
+  </ul>
+
+  <div class="pull-right" style="margin: 0 0 20px 20px;">
+    <ul class="nav nav-list well gts-toc"><li class="nav-header">Table of contents</li>
+<li>
+<a href="#toc_0">Debian-Specific Installation</a>
+<ul class="nav nav-list">
+<li>
+<a href="#toc_1">Dependencies</a>
+</li>
+<li>
+<a href="#toc_2">Environment Variables</a>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="gts-markup">
+    <h1 id="toc_0">Debian-Specific Installation</h1>
+
+<p>These instructions were tested on Debian Wheezy, specifically Crunchbang Waldorf. Your mileage may vary, but feel free to contribute back corrections.</p>
+
+<h2 id="toc_1">Dependencies</h2>
+
+<p>First, you&#39;ll need to install a couple packages from the repos.</p>
+
+<p>Debian Wheezy does not include the package <code>gstreamer0.10-pocketsphinx</code> which is also required. To get this package do the following:</p>
+
+<pre><code>sudo nano /etc/apt/sources.list
+</code></pre>
+
+<p>and add this to the file:</p>
+
+<p><code>deb http://http.us.debian.org/debian/ testing non-free contrib main</code></p>
+
+<p>Then do:</p>
+
+<pre><code>sudo apt-get update
+sudo apt-get install gstreamer0.10-pocketsphinx
+</code></pre>
+
+<p>After this it is recommended to comment out the testing apt source in sources.list by simply editing the file again and adding <code>#</code> to the beginning of the line that you added. The rest of the packages will be available using the stable sources:</p>
+
+<pre><code>apt-get install autoconf automake bison build-essential \  
+libasound2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev \  
+libtool python-gst0.10 python-pyside gstreamer0.10-alsa
+</code></pre>
+
+<p>To be able to use the yaml options file, you will also need python-yaml, so if you need it, then do:</p>
+
+<pre><code>apt-get install python-yaml
+</code></pre>
+
+<p>After those are installed, we need to compile sphinxbase and pocketsphinx.<br>
+Download the latest version from the CMU Sphinx project<br>
+(<a href="http://cmusphinx.sourceforge.net/">http://cmusphinx.sourceforge.net/</a>) and unpack them somewhere. From each<br>
+directory (compile sphinxbase first), run the following commands with<br>
+sudo/root privileges:</p>
+
+<pre><code>./autogen.sh
+make
+make install
+</code></pre>
+
+<h2 id="toc_2">Environment Variables</h2>
+
+<p>Since we had to install some libraries manually, we need to modify some<br>
+bash environment variables to make everything easy to find.</p>
+
+<pre><code>export GST_PLUGIN_PATH=/usr/local/lib
+export LD_LIBRARY_PATH=/usr/local/lib
+</code></pre>
+
+<p>From there, you can follow steps 0 thru whatever in the normal README file<br>
+to process the command files. Make sure to throw <code>TEA EARL GREY HOT</code> in there<br>
+for good measure.</p>
+
+  </div>
+    <p class="muted">
+      Last edited by nijoakim
+      09 Aug 23:28
+    </p>
+</div>
+
+      </div>
+    </div>
+    <div class="footer">
+      
+<div class="container">
+  <p class="pull-right gts-powered-by">
+    <a href="http://getgitorious.com">
+      <img alt="Powered by Gitorious" src="/assets/poweredby.png" title="Powered by Gitorious">
+    </a>
+  </p>
+  <div class="row-fluid">
+      <div class="span3">
+        <ul>
+          <li><a href="/about">About Gitorious</a></li>
+          <li><a href="http://groups.google.com/group/gitorious">Discussion group</a></li>
+          <li><a href="http://blog.gitorious.org">Blog</a></li>
+        </ul>
+      </div>
+      <div class="span3">
+        <ul>
+          <li><a href="http://en.gitorious.org/tos">Terms of Service</a></li>
+          <li><a href="http://en.gitorious.org/privacy_policy">Privacy Policy</a></li>
+          <li><a href="http://gitorious.com">Professional Gitorious Services</a></li>
+        </ul>
+      </div>
+      <div class="span3">
+        <ul>
+          <li><a href="http://en.gitorious.org/security">Security</a></li>
+        </ul>
+      </div>
+  </div>
+  <p>
+    Gitorious is free software licensed under
+    the <a href="http://www.gnu.org/licenses/agpl-3.0.html">GNU Affero
+      General Public License (AGPL)</a> unless noted otherwise.
+    GIT is a trademark of Software Freedom Conservancy and Gitorious' use of
+    "GIT" is under license.
+  </p>
+  <p class="gts-com-plug">
+    <a href="http://gitorious.com">Professional Gitorious services</a> - Git
+    hosting at your company, custom features, support and more.
+    <a href="http://gitorious.com">gitorious.com</a>.
+  </p>
+</div>
+
+    </div>
+    <script data-gts-env-user-view-state-path="/users/view_state.json"></script>
+      <script src="/dist/js/gitorious3.min.js?1422010764"></script>
+      <script src="/ui3/js/lib/jquery-ui/ui/jquery.ui.menu.js"></script>
+      <script src="/ui3/js/lib/jquery-ui/ui/jquery.ui.autocomplete.js"></script>
+      <script src="/ui3/js/lib/jquery-ui/ui/jquery.ui.datepicker.js"></script>
+      <script src="/assets/issues/application.js"></script>
+    <script src="/assets/application-629fa8710ee38995a17d3918240aead4.js" type="text/javascript"></script>
+    
+    
+    <script>
+      $(function() { $('.alert').append('<a class="close" data-dismiss="alert" href="#">&times;</a>').alert(); });
+      gts.enableJS(document.documentElement);
+    </script>
+  </body>
+</html>

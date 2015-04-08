@@ -37,6 +37,10 @@ use_ssid(){
     export ssid='NAAN-229F';
   export key=00304f85;
   ;;
+Linnovate)
+    export ssid='Linnovate';
+  export key=linnotng;
+  ;;
   **)
     print error unknown ssid
     ;;
@@ -50,5 +54,6 @@ use_ssid(){
 #export file_wpa='/tmp/wpa1'
 
 #export encryption='wpa'
-#
+export ssid=Linnovate
+##
 export -f use_ssid

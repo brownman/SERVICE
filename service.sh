@@ -88,7 +88,8 @@ stepper_run(){
     cat1 $file_script true
     # sleep 2
     print line
-    commander_gxmessage "$cmd" 
+
+    commander "$cmd" 
   else
     print error "no such file: $file_script"
     notify-send1 "$0" "no such file: $file_script" &
@@ -104,6 +105,8 @@ using1(){
   #  ls /tmp/library.cfg
   #source /tmp/library_proto.cfg
   use indicator 
+
+    use commander_gxmessage
   use vars
   use notify-send1
   use assert
