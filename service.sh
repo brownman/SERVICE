@@ -20,6 +20,7 @@ log123(){
   print func
   local line_readonly0="$@" 
   local line_readonly1="$(date +%H:%M:%S) : $line_readonly0"
+  
   #  echo "$line_readonly1"  >> /tmp/service
 notify-send 'log' "${line_readonly1}" &
   touch $file_log
@@ -88,8 +89,8 @@ stepper_run(){
     cat1 $file_script true
     # sleep 2
     print line
-
-    commander "$cmd" 
+trace "$cmd"
+    eval "$cmd" 1>/tmp/$runner.out 2>/tmp/$runner.err
   else
     print error "no such file: $file_script"
     notify-send1 "$0" "no such file: $file_script" &
@@ -149,7 +150,7 @@ stepper_init(){
 steps(){
   using1
   set_env
-  intro_start
+  #intro_start
   stepper_init
 }
 
@@ -185,7 +186,7 @@ while getopts ":e:" opt; do
       file=/tmp/dir_root/SCRIPT/SERVICE/VALIDATOR/${OPTARG}.sh
 #      commander "assert file_exist $file"
 test -f $file && (     cat1 $file true; dialog_optional_edit $file  ) || (
-      gvim -f $file
+      $EDITOR -f $file
       chmod u+x $file
       )
 
