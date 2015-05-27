@@ -22,7 +22,7 @@ log123(){
   local line_readonly1="$(date +%H:%M:%S) : $line_readonly0"
   
   #  echo "$line_readonly1"  >> /tmp/service
-notify-send 'log' "${line_readonly1}" &
+#notify-send 'log' "${line_readonly1}" &
   touch $file_log
   #/tmp/service
   file_update $file_log "$line_readonly1"
