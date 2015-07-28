@@ -1,10 +1,35 @@
+set -u
+lesson=${1:-}
+exec 2>/tmp/errr
+using2(){
+  use dialog_optional
+  use indicator
+  use commander
+  #use stepper
+  use print
+  use act_on_list
+  use assert
+}
 
-num1=68
+set_env(){
+true
+    #file1=../DIR/scrapping/start.sh
+}
 
-file22=/home/someone1/OFER/SCRAP/scrapping/BANK/RU_EN_${num1}.txt 
-file33=/home/someone1/OFER/SCRAP/scrapping/BANK/AR_EN_${num1}.txt 
-file11=/home/someone1/OFER/SCRAP/scrapping/BANK/EN_RU_${num1}.txt
-/tmp/service.sh random_line $file11 $file22 $file33
-
-
-
+func1(){
+  local file1="$dir_SERVICE/DIR/scrapping/start.sh"
+  ls -l $file1
+ 
+  local cmd="$file1 $lesson"
+  
+   commander $cmd  
+}
+steps(){
+ # commander  using2
+ commander  set_env
+  commander func1
+}
+echo hi
+type steps
+commander steps
+echo bye

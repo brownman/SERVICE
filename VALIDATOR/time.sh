@@ -1,5 +1,5 @@
 
-msg='Ofer, what is the time now ?'
+msg='time is ...'
 notify-send "$msg" &
 #flite -t  "$msg" 
 sleep 3

@@ -56,6 +56,8 @@ set_env(){
   export dir_SERVICE="$dir_self"
   export dir_SH="$dir_SERVICE/SH"
   export dir_VALIDATOR="$dir_SERVICE/VALIDATOR"
+
+  export dir_DIR="$dir_SERVICE/DIR"
   export dir_LIST="$dir_SERVICE/LIST"
   export dir_PROTOTYPTE="/tmp/dir_root/SCRIPT/prototypes/BANK"
 }
@@ -86,11 +88,13 @@ stepper_run(){
   if [ -f "$file_script" ];then
 #    dialog_recent "task: $runner" "gvim $file_script"
     
-    cat1 $file_script true
+   # cat1 $file_script true
     # sleep 2
+
+    #notify-send1 "$0" "running: $file_script" &
     print line
 trace "$cmd"
-    eval "$cmd" 1>/tmp/$runner.out 2>/tmp/$runner.err
+eval "$cmd" 1>/tmp/$runner.out 2>/tmp/$runner.err || ( xcowsay "`cat /tmp/$runner.err`" )
   else
     print error "no such file: $file_script"
     notify-send1 "$0" "no such file: $file_script" &
