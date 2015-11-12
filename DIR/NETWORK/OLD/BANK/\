@@ -1,6 +1,0 @@
-set_ap(){
-commander sudo iwconfig wlp5s0 essid NAAN-4C64
-}
-export -f set_ap
-
-

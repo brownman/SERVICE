@@ -88,8 +88,8 @@ stepper_run(){
   if [ -f "$file_script" ];then
 #    dialog_recent "task: $runner" "gvim $file_script"
     
-   # cat1 $file_script true
-    # sleep 2
+   cat1 $file_script true
+     sleep 2
 
     #notify-send1 "$0" "running: $file_script" &
     print line
@@ -154,7 +154,7 @@ stepper_init(){
 steps(){
   using1
   set_env
-  #intro_start
+  intro_start
   stepper_init
 }
 

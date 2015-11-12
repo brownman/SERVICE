@@ -1,1 +1,0 @@
-/usr/share/wicd/cli/wicd-cli.py
