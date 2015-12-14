@@ -1,12 +1,15 @@
 use file_update
 
 file=/tmp/translations.txt
-
+lang=ru
 run(){
 input=${1:-}
 str=$( gxmessage -entrytext "$input" -title translate -file $file $GXMESSAGE )
+
+script=$( use_sh translate )
+commander $script $lang $str
+
 file_update $file $str
-`use_sh translate` $str
 }
 
 history_pick(){
